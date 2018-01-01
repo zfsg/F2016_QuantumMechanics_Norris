@@ -1,0 +1,924 @@
+\documentclass[10pt,a4paper]{scrartcl}
+
+\input{../Headerfiles/Packages}
+\input{../Headerfiles/Titles}
+\input{../Headerfiles/Commands}
+
+\usepackage[ngerman]{babel}
+  
+%-------------------------------------------------------------------
+%linespread
+\renewcommand{\baselinestretch}{1.5}
+%-------------------------------------------------------------------
+\pagestyle{empty}
+\author{GianAndrea Müller}
+\title{Summary Quantum Mechanics}
+\begin{document}
+\begin{multicols*}{2}	%divide page into 3 columns
+	\parindent 0pt %no indent at the first line of a new paragraph
+	\setlength{\columnseprule}{1pt}	%column-dividing rule
+ 	%\maketitle
+ 	%\clearpage
+
+ 	\begin{tabularx}{\linewidth}{lll}
+ 	Constant				&		Symbol		&		Value\\
+	Avogadro's number 		& 	$N_0$		&		\SI{6.02205e23}{\per\mole} \\
+	Proton charge			&	$e$			&		\SI{1.60219e-19}{\coulomb}\\
+	Planck's constant		&	$h$			&		\SI{6.62618e-34}{\joule\second}\\
+							&	$\hbar$		&		\SI{1.05450e-34}{\joule\second}\\
+	Speed of light in vacuum&	$c$			&		\SI{2.997925e8}{\meter\per\second}\\
+	Atomic mass unit		&	$amu$		&		\SI{1.66056e-27}{\kilogram}\\
+	Electron rest mass 		& 	$m_e$		&		\SI{9.10953e-31}{\kilogram}\\
+	Proton rest mass		&	$m_p$		&		\SI{1.67265e-27}{\kilogram}\\
+	Boltzmann constant		&	$k_B$		&		\SI{1.38066e-23}{\kilogram}\\
+	Molar gas constant 		&	$R$			&		\SI{8.31441}{\joule\per\kelvin\per\mole}\\
+	Permittivity of a vacuum&	$\epsilon_0$ &		\SI{8.854188e-12}{\coulomb\squared\second\squared\per\kilogram\per\meter\cubed}\\
+							&	$4\pi\epsilon_0$&	\SI{1.112650e-10}{\coulomb\squared\second\squared\per\kilogram\per\meter\cubed}\\
+	Rydberg constant		&				&\\
+		(infinite nuclear mass)&	$R_\infty$&		\SI{2.179914e-23}{\joule}\\
+	First Bohr radius		&	$a_0$		&		\SI{5.29177e-11}{\meter}\\
+	Bohr magneton			&	$\mu_B$		&		\SI{9.27409e-24}{\joule\per\tesla}\\
+	Stefan-Boltzmann constant&	$\sigma$	&		\SI{5.67032e-8}{\joule\per\meter\squared\per\kelvin\tothe{4}\per\second}
+	
+\end{tabularx}
+	
+	\subsection{Integrals}
+	\begin{tabular}{ll}
+	$\int_0^a{x(a-x)\sin(\frac{n\pi}{a}x)dx}=2[\frac{a}{n\pi}]^3[1-\cos(n\pi)]$	&	$\int{\sin^2(kx)dx}=\frac{1}{2}x-\frac{1}{4k}\sin(2kx)+C$\\
+	$\int_0^a{x\sin^2(\frac{n\pi}{a}x)dx}=\frac{a^2}{4}$	&	$\int_0^a{x^2\sin^2(\frac{n\pi}{a}x)dx}=(\frac{a}{2\pi n})(\frac{4\pi^3n^3}{3}-2n\pi$\\
+	\end{tabular}
+	
+	$\;\;\int_0^a{x\sin(\frac{n\pi}{a}x)\sin(\frac{m\pi}{a}x)dx}=
+	\begin{cases}
+	\frac{-4a^2nm}{(n+m)^2(n-m)^2\pi^2} & (m+n) \text{ odd} \\
+	0 & (m+n) \text{ even}
+	\end{cases}	
+	$
+	
+	\begin{tabular}{ll}
+	$\int{\sin^2(x)dx}=\frac{1}{4}\sin(2x)-\frac{1}{2}x+C$&$\int{\cos^2(x)dx}=\frac{1}{4}\sin(2x)+\frac{1}{2}x+C$\\
+	$\int_0^\infty{x^ne^{-ax}dx}=\frac{n!}{a^{n+1}}$&$\int_0^\infty{e^{-ax^2}dx}=(\frac{\pi}{4a})^{1/2}$\\
+	$\int_0^\infty{x^{2n}e^{-ax^2}dx}=\frac{\sum_{k=1}^n{(2n-1)}}{2^{n+1}a^n}(\frac{\pi}{a})^{1/2}$&$\int_0^\infty{x^{2n+1}e^{-ax^2}dx}=\frac{n!}{2a^{n+1}}$
+	\end{tabular}
+	
+	$\;\;\int_0^a{\sin(\frac{n\pi x}{a})\sin(\frac{m\pi x}{a})dx}=\int_0^a{\cos(\frac{n\pi x}{a})\cos(\frac{m\pi x}{a})dx}=\frac{a}{2}\ \delta_{nm}\qquad\delta_{nm}=\begin{cases}1&m=n\\0&\end{cases}$
+	
+	\subsection{Even/Odd}
+	
+	$\intinf{e(x)dx}=2\int_0^\infty{e(x)dx}$\hfill$\intinf{o(x)dx}=0$
+	
+	\begin{tabular}{l|lll|l|lll}
+	Even&$g_1+g_2$&$g_1g_2$&$u_1u_2$&$u_1'$&$g_1\circ g_2$&$g_1\circ u_1$&$u_1\circ g_1$\\
+	\hline
+	Odd	&$u_1+u_2$&$u_1g_1$&&$g_1'$&$u_1\circ u_2$& &
+	\end{tabular}	
+	
+	\subsection{Identities}
+	
+	\begin{tabular}{ll}
+	$\sin(\alpha)\sin(\beta)=\frac{1}{2}\cos(\alpha-\beta)-\frac{1}{2}\cos(\alpha+\beta)$&$\cos(\alpha)\cos(\beta)=\frac{1}{2}\cos(\alpha-\beta)+\frac{1}{2}\cos(\alpha+\beta)$\\
+	$\sin(\alpha)\cos(\beta)=\frac{1}{2}\sin(\alpha+\beta)+\frac{1}{2}\sin(\alpha-\beta)$&\\
+	$\sin(\alpha\pm\beta)=\sin(\alpha)\cos(\beta)\pm\cos(\alpha)\sin(\beta)$&$\cos(\alpha\pm\beta)=\cos(\alpha)\cos(\beta)\mp\sin(\alpha)\sin(\beta)$\\
+	$e^{\pm i\theta}=\cos(\theta)\pm i\sin(\theta)$&\\
+	$\cos(\theta)=\frac{e^{i\theta}+e^{-i\theta}}{2}$&$\sin(\theta)=\frac{e^{i\theta}-e^{-i\theta}}{2i}$\\
+	$f(x)=\sum_{n=0}^\infty{\frac{f^{(n)}(a)(x-a)^n}{n!}}$&$e^x=\sum_{n=0}^\infty{\frac{x^n}{n!}}$\\
+	$\cos(x)=\sum_{k=0}^\infty{\frac{x^{2k}}{(2k)!}}$&$\sin(x)=\sum_{k=1}^\infty{\frac{x^{2k+1}}{(2k+1)!}}$
+	
+	\end{tabular}
+	
+\end{multicols*}
+\begin{multicols*}{3}
+\parindent 0pt
+\setlength{\columnseprule}{1pt}
+	
+	\section{Schrödinger equation}
+	
+	$i\hbar \frac{\partial\Psi}{\partial t}=-\frac{\hbar^2}{2m}\frac{\partial^2\Psi}{\partial x^2}+V\Psi$ \hfill$\intinf{|\Psi(x,t)|^2dx}=1$
+	
+	$\int_a^b{|\Psi(x,t)|^2dx}$ = probability of finding the particle between a and b, at time t.
+	
+	$\intinf{|\Psi(x,t=0)|^2dx}=1$	\hfill$\Longrightarrow$\hfill$ \intinf{|\Psi(x,t)|^2dx=1}$
+	
+	\subsection{Stationary solutions, seperation of variables}
+	
+	$V(x,t)=V(x)\qquad Psi(x,t)=\psi(x)\phi(t)$
+	
+	$i\hbar \frac{\partial\Psi}{\partial t}=-\frac{\hbar^2}{2m}\frac{\partial^2\Psi}{\partial x^2}+V\Psi\qquad \Rightarrow \qquad i\hbar\frac{1}{\phi}\frac{d\phi}{dt}=-\frac{\hbar^2}{2m}\frac{1}{\psi}\frac{d^2\psi}{dx^2}+V$
+	
+	\fbox{$\frac{d\phi}{dt}=-\frac{iE}{\hbar}\phi\quad\Rightarrow\quad \phi(t)=e^{iEt/\hbar}$}\hfill\fbox{$-\frac{\hbar^2}{2m}\frac{d^2\psi}{dx^2}+V\psi=E\psi$}
+	
+	To solve for $\psi(x)$ we need $V(x)$\hfill $\hat{H}\psi=E\psi$\hfill$\hat{H}^2\psi=E^2\psi$
+	
+	$\Psi(x,t)=\psi\cdot e^{i\Theta}\rightarrow |\Psi|^2=e^{-i\Theta}\psi^\ast\cdot e^{i\Theta}\psi=\psi^\ast\psi=|\psi|^2$
+	
+	$\expval{H}=E\qquad\sigma_H^2=0\qquad \Psi_n(x,t)$ are complete!
+	
+	\subsubsection{Case $V(x)\equiv 0$} 
+	
+	$\rightarrow \frac{d^2\psi}{dx^2}=-k^2\psi\qquad$ leads to 2 general solutions: $\begin{cases}
+	\text{Travelling Waves}&\psi(x)=Ce^{ikx}+De^{-ikx}\\
+	\text{Standing Waves}&\psi(x)=A\sin(kx)+B\cos(kx)	
+	\end{cases}$
+	
+	\subsubsection{The free particle, travelling waves}
+	
+	$-\frac{\hbar^2}{2m}\frac{d^2\psi}{dx^2}=E\psi$\hfill$\psi(x)=Ce^{ikx}+De^{-ikx}$\hfill$\psi_k(x)=C'e^{ikx}$
+	
+	$\Psi_k(x,t)=\psi_k(x)e^{-iEt/\hbar}\qquad$ with $\qquad E=\frac{\hbar^2k^2}{2m}$\hfill$p=\hbar k$
+	
+	$\Psi_k(x,t)=C'e^{i(kx-\frac{\hbar k^2}{2m}t)}$\hfill and\hfill $\begin{cases}
+	k>0&\Rightarrow\text{going right}\\
+	k<0&\Rightarrow\text{going left}	
+	\end{cases}$
+	
+	\finn
+	
+	\begin{center}
+	\fbox{$|\Psi_k(x,t)|^2=|C'|^2\rightarrow\intinf{|\Psi_k|^2dx}=\infty\neq 1!$}
+	
+	Thus a free particle with definite energy does not exist!
+	\end{center}
+	
+	$\Psi(x,t)=\frac{1}{\sqrt{2\pi}}\intinf{g(k)\exp(i(kx-\frac{\hbar k^2 }{2m}t))dk}$\hfill$c_n=\frac{g(k)dk}{\sqrt{2\pi}}$
+	
+	\important{$g(k)=\frac{1}{\sqrt{2\pi}}\intinf{\Psi(x,0)e^{-ikx}dx}$}
+	
+	\footnotesize
+	\importname{Plancherel}{$f(x)=\frac{1}{\sqrt{2\pi}}\intinf{F(k)e^{ikx}dk}\Leftrightarrow F(k)=\frac{1}{\sqrt{2\pi}}\intinf{f(x)e^{-ikx}dx}$}
+	\normalsize
+	
+	If a particles wave packet is localized in position, it contains many k-components, thus the momentum($p=\hbar k$) is unclear.
+	
+	If a particles wave packet is delocalized in position, it contains few k-components, thus the momentum is clearly defined, though the position is not.
+	
+	\subsection{The infinite square well, standing waves}
+	
+	$V(x) = 0\ \forall\ x\in(0,a)
+	\qquad \Rightarrow \qquad -\frac{\hbar^2}{2m}\frac{d^2\psi}{dx^2}=E\psi$
+	
+	$\psi(x)=A\sin(kx)+B\cos(kx)$.
+	
+	BC: $\psi(x) = A\sin(kx)\quad k=\frac{n\pi}{a}\Rightarrow E_n=\frac{n^2\pi^2\hbar^2}{2ma^2}\quad|A|^2=\frac{2}{a}$.
+	
+	\important{$\psi_n(x)=\sqrt{\frac{2}{a}}\sin(\frac{n\pi}{a}x)$}
+	
+	\important{$\Psi(x,t)=\sum_{n=1}^\infty{c_n\sqrt{\frac{2}{a}}\sin(\frac{n\pi}{a}x)e^{-i(n^2\pi^2\hbar/2ma^2)t}}$}
+	
+	$c_n=\sqrt{\frac{2}{a}}\int_0^a{sin(\frac{n\pi}{a}x)\Psi(x,0)dx}$\hfill$\expval{\hat{H}}=\sum\limits_{n=1}^\infty{|c_n|^2}E_n$
+	
+	\finn
+	
+	$\sum_{n=1}^\infty{|c_n|^2}=1$\hfill $|c_n|^2$ probability to measure $E_n$.
+	
+	\subsection{The harmonic Oscillator}
+	
+	$V(x)=\frac{1}{2}kx^2=\frac{1}{2}m\omega^2x^2\qquad\omega=\sqrt{\frac{k}{m}}$
+	
+	\subsubsection{Ladder Operators}
+	\begin{center}
+	\fbox{$\hat{a}_\pm=\frac{1}{\sqrt{2\hbar m\omega}}(\mp i \hat{p} + m \omega \hat{x})\qquad\hat{N}=\hat{a}_+\hat{a}_-\qquad\expval{\hat{N}}=n$}
+	\end{center}
+	
+	$\hat{H}=\hbar\omega(a_-a_+-\frac{1}{2})\qquad \hat{H}=\hbar\omega(a_+a_-+\frac{1}{2})$\hfill$[a_-,a_+]=1$
+	
+	\begin{center}
+	\fbox{$\psi_n\hat{a}_+=\psi_{n+1}$ has $E=E_n+\hbar\omega$}
+	
+	\fbox{$\psi_0\hat{a}_-=0\qquad\psi_0=(\frac{m\omega}{\pi\hbar})^{1/4}e^{-\frac{m\omega}{2\hbar}x^2}\qquad E_0=\frac{1}{2}\hbar\omega$}
+	
+	\fbox{$\psi_1=(\frac{m\omega}{\pi\hbar})^\frac{1}{4}\ (\frac{2m\omega}{\hbar})^\frac{1}{2}\ x\ e^{-\frac{m\omega}{2\hbar}x^2}$}
+	
+	\fbox{$\psi_n=A_n(a_+)^n\psi_0\qquad E_n=(n+\frac{1}{2})\hbar\omega)\qquad A_n=\frac{1}{\sqrt{n!}}$} 
+	\end{center}
+	
+	\begin{itemize}
+	\compaq
+	\item
+	$\psi_n$ alternate between even and odd.
+	\item
+	$\psi_n$ are mutually orthogonal: $\intinf{\psi_m^*\psi_ndx=\delta_{mn}}$	
+	\item
+	classical turning point $x_p$ from $E_n=V(x)$
+	\end{itemize}
+	
+	\subsection{Delta-Function potential}
+	
+	$V(x)=-\alpha \delta(x)$\hfill$-\frac{\hbar^2}{2m}\cdot\frac{\partial^2\psi}{\partial x^2}-\alpha\delta(x)\psi=E\psi$
+	
+	\subsubsection{Bound state}
+	
+	$\psi(x)\begin{cases}Be^{\kappa x}&(x\leq 0)\\Be^{-\kappa x}&(x\geq 0)\end{cases}\qquad \kappa=\frac{m\alpha}{\hbar^2}\qquad B=\frac{\sqrt{m\alpha}}{\hbar}$
+	
+	\importname{single bound state}{$\psi(x)=\frac{\sqrt{m\alpha}}{\hbar}e^{-m\alpha|x|/\hbar^2}\qquad E=-\frac{m\alpha^2}{2\hbar^2}$}
+	
+	\subsubsection{Scattering states}
+	
+	$\psi(x<0)=Ae^{ikx}+Be^{-ikx}\qquad \psi(x>0)=Fe^{ikx}+Ge^{-ikx}$
+	
+	\note{A - incident wave; B - reflected wave; F - transmitted wave; G = 0}
+	
+	\begin{center}
+	\fbox{$B=\frac{i\beta}{1-i\beta}A,\quad F=\frac{1}{1-i\beta}A\qquad \beta=\frac{m\alpha}{\hbar^2 k}\quad k=\frac{\sqrt{2mE}}{\hbar}$}
+	
+	\fbox{$R=\frac{|B|^2}{|A|^2}=\frac{\beta^2}{1+\beta^2}=\frac{1}{1+(2\hbar^2E/m\alpha^2)}$} reflection coeff. 
+	
+	\fbox{$T=\frac{|F|^2}{|A|^2}=\frac{1}{1+\beta^2}=\frac{1}{1+(m\alpha^2/2\hbar^2E)}$} transmission coeff.
+	\end{center}
+	\note{$R+T=1\qquad$ higher E \dahe higher probability of transmission}
+	
+	\subsubsection{Delta barrier}
+	
+	\begin{itemize}
+	\compaq
+	\item
+	Change sign of $\alpha$ \dahe no bound state.
+	\item
+	r. and t. coefficients unaffected.
+	\item
+	transmission \dahe tunneling
+	\end{itemize}
+	
+	\subsection{Finite step, finite well, finite barrier}
+	
+	Divide in regions and solve T.I.S.E. in each of them. 
+	
+	BC: [$\psi$ finite, continuous, $\frac{d\psi}{dx}$ continuous]
+	
+	\mypic{FinitePotentials}
+	
+	\subsubsection{Sharp potential change}
+	
+	\begin{itemize}
+	\compaq
+	\item
+	Higher energy \dahe reflection, transmission.
+	\item
+	Lower energy \dahe reflection, penetration.
+	\item
+	Pentration: with exponentially decaying probability, can lead to tunneling.	
+	\end{itemize}
+		
+	\subsubsection{Scattering and bound states}
+	
+	\begin{tabular}{ll}
+	$E\ >\ V(\pm\infty)\ \Rightarrow$&scattering state\\
+	$E\ <\ V(\pm\infty)\ \Rightarrow$&bound state
+	\end{tabular}
+		
+	\section{Formalism}
+	
+	\subsection{Statistics}
+	
+	probability density: $\rho(x)$\hfill $P_{a,b}=\int_a^b{\rho(x)dx}$
+	
+	$1=\intinf{\rho(x)dx}$\hfill$\expval{x}=\intinf{x\rho(x)dx}$
+	
+	$\expval{f(x)}=\intinf{f(x)\rho(x)dx}$\hfill$\sigma^2=\expval{(\Delta x)^2}=\expval{x^2}-\expval{x}^2$
+
+	\subsection{Inner products}
+
+	$\inp{\alpha}{\beta}=a_1^*b_1+a_2^*b_2 + \cdots + a_N^*b_N$\hfill$\inp{f}{g}\equiv \int_a^b{f(x)^*g(x)dx}$
+	
+	\begin{center}
+	\fbox{
+	$|\int_a^b{f(x)^*g(x)dx}|\leq\sqrt{\int_a^b{|f(x)|^2dx}\int_a^b{|g(x)|^2dx}}$}
+	
+	\note{The inner product of square-integrable functions converges.}
+	\end{center}
+	
+	$\inp{f}{g}=\inp{g}{f}$	\hfill $\inp{f}{f}=\intinf{|f(x)|^2dx}$
+	
+	$\{f_n\}$ is complete if for any function $F(x) = \sum_{n=1}^\infty{c_nf_n(x)}$
+	
+	\subsubsection{Fouriers trick}
+	
+	orthonormal set of functions: $\{f_n(x)\}$\hfill\dahe $c_n=\inp{f_n}{f}$
+	
+	$F(x)=\sum_{n=1}^\infty{\inp{f_n}{f}\cdot f_n(x)}$
+	
+	\subsection{Hilbert Space}
+	
+	$f(x)\ :\ \int_a^b{|f(x)|^2dx<\infty}$\hfill respectively \hfill$\Psi\ :\ \intinf{|\Psi|^2dx}=1$
+	
+	$\lim_{x\rightarrow\pm\infty}{\frac{df}{dx}}=0$
+	
+	\subsection{Observables and Operators}
+	
+	$Q(x,p)$ and $\hat{Q}(x,\frac{\hbar}{i}\frac{\partial}{\partial x})$\hfill$\expval{Q}=\int{\Psi^*\hat{Q}\Psi dx}=\inp{\Psi}{\hat{Q}\Psi}$
+	
+	$\hat{x}=x\qquad\hat{p}=\frac{\hbar}{i}\frac{\partial}{\partial x}\qquad \expval{p}=\frac{m d\expval{x}}{dt}\qquad$ (Ehrenfest)
+	
+	$ \hat{H}=-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}+V(x) \qquad \expval{H}=\frac{\sum_{n=1}^\infty{|c_n|^2E_n}}{N}$	
+	
+	\begin{center}
+	\fbox{Hermitian operator $\inp{f}{\hat{Q}g}=\inp{\hat{Q}f}{g}$}
+	
+	\fbox{Observables are represented by hermitian operators.}
+	\end{center}
+	
+	$\inp{f}{(\hat{Q}_1+\hat{Q}_2)g}=\inp{(\hat{Q}_1+\hat{Q}_2)f}{g}$
+	
+	$\inp{f}{\hat{Q}(\hat{R}f)}=\inp{\hat{Q}f}{\hat{R}f}=\inp{\hat{R}(\hat{Q}f)}{f}\ \forall \hat{Q},\hat{R}\ :\ [\hat{Q},\hat{R}]=0 $
+	
+	\subsection{Commutators}
+	
+	$[A,B]=AB-BA\qquad [\hat{A}\hat{B},\hat{C}]=\hat{A}[\hat{B},\hat{C}]-[\hat{A},\hat{C}]\hat{B}$
+
+	\small
+
+	$[\hat{x},\hat{p}_x]=i\hbar\quad[\hat{a_-},\hat{a_+}]=1\quad[\hat{x}^n,\hat{p}_x]=i\hbar nx^{n-1}\quad[f(\hat{x}),\hat{p}]=i\hbar \frac{\partial f}{\partial x}$
+
+	\normalsize
+	
+	$[\hat{H},\hat{x}]=\frac{i^2\hbar^2}{m}\frac{\partial}{\partial x}=-\frac{i\hbar \hat{p}}{m}\qquad [\hat{x},\hat{y}]=[\hat{x},\hat{p}_y]=[\hat{p}_x,\hat{p}_y]=0$
+	
+	$[\hat{L}_z,\hat{x}]=i\hbar y\quad[\hat{L}_z,\hat{y}]=-i\hbar x\quad[\hat{L}_z,\hat{z}]=0$
+	
+	$[\hat{L}_z,\hat{p}_y]=-i\hbar \hat{p}_x=-\hbar^2 \frac{\partial}{\partial x}\quad [\hat{L}_z,\hat{p}_x]=i\hbar \hat{p}_y=\hbar^2\frac{\partial}{\partial y}$
+	
+	$[\hat{L}_z,\hat{p}_z]=0\quad[\hat{L}_z,\hat{r}^2]=0\quad[\hat{L}_z,\hat{p}^2]=0\quad[\hat{H},\hat{L}^2,\hat{L}_z]=0$
+	
+	for H: $\expval{x}=0\quad \expval{x^2}=$?\dahe$\expval{r^2}=\expval{x^2}+\expval{y^2}+\expval{z^2}=3\expval{x^2}$
+		
+	\subsection{Determinate States}
+	
+	$\hat{Q}\Psi=q\Psi$\hfill Spectrum of $\hat{Q}$ : $\{q_n\}$\hfill Eigenfunctions $\Psi_n$
+	
+	\fbox{Determinate states are eigenfunctions of $\hat{Q}$}
+	
+	Degenrate states: $\qquad\hat{Q}\Psi_1=\hat{Q}\Psi_2=q\Psi$
+	
+	\fbox{Eigenfunctions of a hermitian operator are \emph{complete}}
+	
+	$\expval{\hat{Q}}=\sum_n{|c_n|^2q_n}\qquad\sum_n{|c_n|^2}=1$
+	
+	\subsubsection{Examples of Eigenfunctions}
+	
+	Position	$\hat{X}g_{x'}(x)=x'g_{x'}(x)\qquad g_{x'}(x)=\delta(x-x')$
+	
+	Momentum	$\hat{p}f_p(x)=pf_p(x)\qquad f_p(x)=\frac{1}{\sqrt{2\pi h}}e^{ipx/\hbar}$
+	
+	Dirac Orthonormality: 
+	
+	$\inp{g_{x'}}{g_{x''}}=\delta(x'-x'')\qquad \inp{f_{p'}}{f_{p''}}=\delta(p'-p'')$
+	
+	\subsection{Dirac Notation}
+	
+	$\inp{f}{g}\equiv \int_a^b{f(x)^*g(x)dx}$ with \textbf{bra} $\langle \alpha|$ and \textbf{ket} $|\beta\rangle$.
+	
+	\begin{tabular}{l@{   -   }l}
+	\textbf{bra} $\langle \alpha|$ & linear function of vectors\\
+	\textbf{ket} $|\beta\rangle$ & vector\\
+	Operator $\hat{Q}$ & matrix\\
+	\end{tabular}	
+	
+	$\Psi(x,t)=\inp{x}{\mathcal{s}(t)}\qquad \Phi(p,t)=\inp{p}{\mathcal{s}(t)}\qquad c_n(t)=\inp{n}{\mathcal{s}(t)}$
+	
+	\emph{$\Psi(x,t),\Phi(p,t),c_n(t)$ are the coefficients in the expansion of $|\mathcal{s}\rangle$ in the basis of the corresponding eigenfunctions.}
+	
+	\scriptsize
+	$\Psi(x,t)=\int{\Psi(y,t)\delta(x-y)dy=\int{\Phi(p,t)\frac{1}{\sqrt{2\pi\hbar}}e^{ipx/\hbar}dp}=\sum{c_ne^{iE_nt/\hbar}\psi_n(x)}}$
+	\normalsize
+	
+	\subsection{Compatible Observables / Uncertainty Principle}
+	
+	\begin{center}
+	\fbox{\small Two observables can be precisely determined iff $[\hat{Q_1},\hat{Q_2}]=0$\normalsize}
+
+	\finn
+	
+	\fbox{$\sigma_{\hat{Q_1}}^2\sigma_{\hat{Q_2}}^2=(\frac{1}{2i}\expval{[\hat{Q_1},\hat{Q_2}]})^2\qquad\sigma_x\sigma_p\geq\frac{\hbar}{2}\qquad\Delta t \Delta E \geq \frac{\hbar}{2}$}
+	
+	\finn
+	
+	\fbox{$\frac{d}{dt}\expval{Q}=\frac{i}{\hbar}\expval{[\hat{H},\hat{Q}]}+\expval{\frac{d\hat{Q}}{dt}}\quad$ is $\expval{\frac{d\hat{Q}}{dt}} \neq 0$ ? $\quad \Delta t=\frac{\sigma_{\hat{Q}}}{|\frac{d\expval{\hat{Q}}}{dt}|}$}
+	\end{center}
+
+	\subsection{Classical Physics}
+	
+	$p=\frac{h}{\lambda}$ de Broglie formula \hfill $E=\frac{p^2}{2m}$
+	
+	Wave function $f(x)=Ae^{ikx}\qquad k=\frac{2\pi}{\lambda}$
+	
+	\section{QM in 3 dimensions}
+	
+	\subsection{Generalization}
+	
+	$p = \frac{\hbar}{i}\nabla\qquad i\hbar\frac{\partial\Psi}{\partial t}=-\frac{\hbar^2}{2m}\nabla^2\Psi+V\Psi \text{ (TDSE)}$
+	
+	$\Psi_n(r,t)=\Psi_n(r)e^{-iE_nt/\hbar}\qquad -\frac{\hbar^2}{2m}\nabla^2\psi+V\psi=E\psi \text{ (TISE)}$
+	
+	ISW: $\psi(x,y,z)=\frac{2}{a}^{3/2}\sin(\frac{n_x\pi}{a}x)\sin(\frac{n_y\pi}{a}y)\sin(\frac{n_z\pi}{a}z)$
+	
+	\subsection{Spherical coordinates}
+	
+	$\nabla^2=\frac{1}{r^2}\frac{\partial}{\partial r}(r^2\frac{\partial}{\partial r})+\frac{1}{r^2\sin\theta}\frac{\partial}{\partial\theta}(\sin\theta\frac{\partial}{\partial\theta})+\frac{1}{r^2\sin^2\theta}(\frac{\partial^2}{\partial\phi^2})$
+	
+	$-\frac{\hbar^2}{2m}\left[\frac{1}{r^2}(r^2\frac{\partial\psi}{\partial r})+\frac{1}{r^2\sin\theta}\frac{\partial}{\partial\theta}(\sin\theta\frac{\partial\psi}{\partial\theta})+\frac{1}{r^2\sin^2\theta}(\frac{\partial^2\psi}{\partial\phi^2})\right]+V\psi=E\psi$
+	
+	\subsection{Seperation of Variables}
+	
+	$\psi(r,\theta,\phi)=R(r)Y(\theta,\phi)$
+	
+	\finn
+	
+	\tiny
+	$\underbrace{\left\{\frac{1}{R}\frac{d}{dr}\left(r^2\frac{dR}{dr}\right)-\frac{2mr^2}{\hbar^2}[V(r)-E]\right\}}_{\text{A, depends on r}}+\underbrace{\frac{1}{Y}\left\{\frac{1}{\sin\theta}\frac{\partial}{\partial\theta}\left(\sin\theta\frac{dY}{d\theta}\right)+\frac{1}{\sin^2\theta}\frac{\partial^2Y}{\partial\phi^2}\right\}}_{\text{B, depends on $\theta$, $\phi$}}=0$	
+	
+	\normalsize
+	
+	\finn
+	
+	thus each part has to be constant \dahe seperation constant:
+	
+	$A(r)=l(l+1)\qquad B(\theta,\phi)=-l(l+1)$
+	
+	\subsubsection{Angular Equation}
+	
+	$\sin\theta\frac{\partial}{\partial\theta}\left(\sin\theta\frac{dY}{d\theta}\right)+\frac{\partial^2Y}{\partial\phi^2}=-l(l+1)\sin^2\theta Y$
+	
+	$Y(\theta,\phi)=\Theta(\theta)\Phi(\phi)$
+	
+	\finn	
+	
+	\footnotesize
+	$\underbrace{\left\{\frac{1}{\Theta}\left[\sin\theta\frac{d}{d\theta}\left(\sin\theta\frac{d\Theta}{d\theta}\right)\right]+l(l+1)\sin^2\theta\right\}}_{\text{C, depends on $\theta$}}+\underbrace{\frac{1}{\Psi}\frac{d^2\Psi}{d\psi^2}}_{\text{D, depends on $\phi$}}=0$
+	\normalsize
+	
+	\finn
+	
+	thus each part has to be constant \dahe seperation constant:
+	
+	$C(\theta)=m^2\qquad D(\phi)=-m^2$
+	
+	\subsection{Solution, $\phi$-equation}
+	
+	$\Phi(\phi)=e^{im\phi}\qquad\Phi(\phi+2\pi)=\Phi(\phi)\qquad m=0,\ \pm1,\ \pm2,\ \dots$
+	
+	\subsection{Solution, $\theta$-equation}
+	
+	$\Theta(\theta)=AP_l^m(\cos\theta)$
+	
+	associated Legendre function: 
+	
+	$P_l^m\equiv(1-x^2)^{|m|/2}\left(\frac{d}{dx}\right)^{|m|}P_l(x)$
+	
+	Legendre polynomial defined by Rodrigues formula:
+	
+	$P_l(x)\equiv\frac{1}{2^ll!}\left(\frac{d}{dx}\right)^l(x^2-1)^l$
+	
+	\subsection{From this: Spherical Harmonics}
+	
+	\begin{center}
+	\fbox{
+	$Y_l^m(\theta,\phi)=\epsilon\sqrt{\frac{(2l+1)}{4\pi}\frac{(l-|m|)!}{(l+|m|)!}}\ e^{im\phi}\ P_l^m(\cos\theta)$
+	}
+	
+	\vspace{1ex}
+	
+	$\epsilon = \tiny \begin{cases}
+	(-1)^m&m\geq0\\
+	1&m\leq0	
+	\end{cases}$
+	\normalsize
+	\end{center}
+	
+	\emph{Spherical harmonics are orthogonal!}
+	
+	$\inp{Y_l^m}{Y_{l'}^{m'}}=\delta_{ll'}\delta{mm'}$
+	
+	\subsection{The radial equation}
+	
+	$\frac{d}{dr}\left(r^2\frac{dR}{dr}\right)-\frac{2mr^2}{\hbar^2}[V(r)-E]R=l(l+1)R$
+	
+	$u(r)=rR(r)$
+	
+	\begin{center}
+	\fbox{$-\frac{\hbar^2}{2m}\frac{d^2u}{dr^2}+\left[V+\frac{\hbar^2}{2m}\frac{l(l+1)}{r^2}\right]u=Eu$}
+	\end{center}
+	
+	Identical to the one-dimensional SE, except for the effective potential.
+	
+	$V_{eff}=V+\underbrace{\frac{\hbar^2}{2m}\frac{l(l+1)}{r^2}}_{\text{centrifugal term}}$
+	
+	The centrifugal term tends to throw the particle away from the origin. 
+	
+	$\lim_{r\rightarrow 0}{V_{eff}}=\infty$
+	
+	\section{The Hydrogen Atom}
+	
+	$V(r)=-\frac{e^2}{4\pi\epsilon_0}\frac{1}{r}$
+	
+	$-\frac{\hbar^2}{2m}\frac{d^2u}{dr^2}+\left[-\frac{e^2}{4\pi\epsilon_0}\frac{1}{r}+\frac{\hbar^2}{2m}\frac{l(l+1)}{r^2}\right]u=Eu$
+	
+	\begin{center}
+	\fbox{$E_n=-\left[\frac{m}{2\hbar^2}\left(\frac{e^2}{e\pi\epsilon_0}\right)^2\right]\frac{1}{n^2}=\frac{E_1}{n^2}\qquad n=1,\ 2,\ 3,\ \dots$}
+	
+	\fbox{ground state: $E_1=-\left[\frac{m}{2\hbar^2}\left(\frac{e^2}{4\pi\epsilon_0}\right)^2\right]=\SI{-13.6}{\electronvolt}$}	
+	
+	\fbox{Bohr radius: $a_0\equiv\frac{4\pi\epsilon_0\hbar^2}{me^2}=\SI{0.592e-10}{\meter}$}
+	\small
+	\fbox{$R_{nl}(r)=\sqrt{\left(\frac{2}{na}\right)^3\frac{(n-l-1)!}{2n[(n+l)!]^2}}\exp(-\frac{r}{na})\left(\frac{2r}{na}\right)^lL_{(n+l)-(2l+1)}^{2l+1}\left(\frac{2r}{na}\right)$}
+	\normalsize
+	\fbox{$\psi_{nlm_l}(r,\theta,\phi)=R_{nl}Y_l^{m_l}(\theta,\phi)$}
+	
+	\end{center}
+	
+	\footnotesize
+	\begin{tabular}{ll}
+	$n=1,\ 2,\ 3,\ \dots$&principal quantum number\\
+	$l=0,\ 1,\ 2,\ \dots ,\ n-1$&azimuthal quantum number\\
+	$m_l=-l, -l+1, .. ,-1,0,1,..,l-1,l$ & magnetic quantum number
+	\end{tabular}
+	\normalsize
+	
+	\subsection{Angular Momentum}
+	
+	Classically $\textbf{L}=\textbf{r}\times\textbf{p}$\hfill $[\hat{H},\hat{L}^2,\hat{L}_z]=0$
+	
+	$L_x=yp_z-zp_y\qquad L_y=zp_x-xp_z\qquad L_z=xp_y-yp_x$
+	
+	\important{$[L_x,L_y]=i\hbar L_z;\ [L_y,L_z]=i\hbar L_x;\ [L_z,L_x]=i\hbar L_y$}
+		
+	$L^2 = L_x^2+L_y^2+L_z^2 \qquad |\vec{L}|=\sqrt{L^2}\qquad [L^2,L_{x,y,z}]=0$
+	
+	\important{$L^2f_l^m=\hbar^2l(l+1)f_l^m\qquad L_zf_l^m=\hbar mf_l^m$}
+	
+	\important{$L_\pm\equiv L_x\pm iL_y$ where $L_z(L_\pm f)=(\mu\pm \hbar)(L_\pm f)$}
+	
+	\subsubsection{Eigenfunctions $f_l^m$}
+	
+	$\vec{L}=\vec{r}\times\vec{p}=\frac{\hbar}{i}(\vec{r}\times\vec{\nabla})=\frac{\hbar}{i}\left(\vec{u_\phi}\frac{\partial}{\partial\theta}-\vec{u_\theta}\frac{1}{\sin\theta}\frac{\partial}{\partial\phi}\right)$
+	
+	in spherical coordinates: $\vec{\nabla}=\vec{u_r}\frac{\partial}{\partial r}+\frac{\vec{u_\theta}}{r}\frac{\partial}{\partial \theta}+\frac{\vec{u_\phi}}{r\sin\theta}\frac{\partial}{\partial \phi}$
+	
+	\begin{align*}
+	\hat{L_x} &=\frac{\hbar}{i}\left(-\sin\phi\frac{\partial}{\partial\theta}-\cos\phi\cot\theta\frac{\partial}{\partial\phi}\right)\\
+	\hat{L_y} &=\frac{\hbar}{i}\left(\cos\phi\frac{\partial}{\partial\theta}-\sin\phi\cot\theta\frac{\partial}{\partial\phi}\right)\\
+	\hat{L_x} &=\frac{\hbar}{i}\frac{\partial}{\partial\phi}\\
+	\hat{L^2} &=-\hbar^2\left[\frac{1}{\sin\theta}\frac{\partial}{\partial\theta}\left(\sin\theta\frac{\partial}{\partial\theta}\right)+\frac{1}{\sin^2\theta}\frac{\partial^2}{\partial\phi^2}\right]
+	\end{align*}
+
+	$\hat{L^2}f_l^{m_l}=\hbar^2l(l+1)f_l^{m_l}\qquad \hat{L_z}f_l^{m_l}=\hbar m_l f_l^{m_l}$
+	
+	leads to \fbox{$f_l^{m_l}=Y_l^{m_l}$} which proves $Y_l^{m_l}$ are orthogonal, because they are the eigenfunctions of a hermitian operator.
+	
+	\subsection{Spin}
+	
+	$[\hat{S_x},\hat{S_y}]=i\hbar\hat{S_z}\qquad [\hat{S_y},\hat{S_z}]=i\hbar\hat{S_x}\qquad [\hat{S_z},\hat{S_x}]=i\hbar\hat{S_y}$
+	
+	\important{$S^2|sm\rangle=\hbar^2s(s+1)|sm\rangle\qquad S_z|sm\rangle=\hbar m|sm\rangle$}
+	
+	\important{$S^2f_s^{m_s}=\hbar^2s(s+1)f_s^{m_s}\qquad S_zf_s^{m_s}=\hbar m_sf_s^{m_s}$}
+	
+	\important{$S_\pm\equiv S_x\pm i S_y$}
+	
+	Electron \dahe $s=\frac{1}{2}\qquad$ Photon \dahe $s=1$
+	
+	For the electron: Only two eigenstates $f_\frac{1}{2}^{\frac{1}{2}}$ and $f_{\frac{1}{2}}^{-\frac{1}{2}}$.
+	
+	\finn
+	
+	Dirac notation: $f_s^{m_s}\rightarrow|s,m_s\rangle$
+	
+	$ f_{\frac{1}{2}}^\frac{1}{2}\rightarrow |\frac{1}{2},\frac{1}{2}\rangle\rightarrow$(up) $\qquad f_{\frac{1}{2}}^{-\frac{1}{2}}\rightarrow |\frac{1}{2},-\frac{1}{2}\rangle\rightarrow$(down)	
+	
+	general spin: $|\chi\rangle=a|\frac{1}{2},\frac{1}{2}\rangle + b |\frac{1}{2},-\frac{1}{2}\rangle$
+	
+	
+	\important{$\ket{\chi}=a\underbrace{\vectwo{1}{0}}_{\text{up}}+b\underbrace{\vectwo{0}{1}}_{\text{down}}$}
+	
+	Probability to measure spin up: $|a|^2$	
+	
+	$\ket{\chi}=\begin{brsm}3i\\4\end{brsm}\frac{1}{5}\rightarrow \inp{\chi}{\chi}=1=\frac{1}{25}\begin{brsm}-3i & 4\end{brsm}\begin{brsm}3i\\4\end{brsm}$
+	
+	\subsubsection{Operators}
+	\begin{tabular}{ll}
+	$\hat{S^2}\rightarrow\frac{3}{4}\hbar^2\begin{brsm}1&0\\0&1\end{brsm}$&$ \hat{S_z}\rightarrow\frac{\hbar}{2}\begin{brsm}1&0\\0&-1\end{brsm}$\\
+	$\hat{S_x}\rightarrow\frac{\hbar}{2}\begin{brsm}0&1\\1&0\end{brsm}$&$\hat{S_y}\rightarrow\frac{\hbar}{2}\begin{brsm}0&-i\\i&0\end{brsm}$\\
+	$\hat{S_+}\rightarrow\hbar\begin{brsm}0&1\\0&0\end{brsm}$&$\hat{S_-}\rightarrow\hbar\begin{brsm}0&0\\1&0\end{brsm}$
+	\end{tabular}
+
+	\finn
+	
+	for example $\hat{S_+}\ket{\frac{1}{2},-\frac{1}{2}}=\hbar\ket{\frac{1}{2},\frac{1}{2}}$ raises $S_z$ by $\hbar$
+	
+	What values at which probabilities? \dahe Find EV of $\hat{S}_y$, normalize, project $\ket{\chi}$ onto $EV_i$, $abs()^2$ gives probability.
+	
+	\section{Identical Particles}
+	
+	\subsection{Two-particle systems}
+	
+	$\Psi(\vec{r}_1,\vec{r}_2,t)$
+	
+	\important{$\hat{H}=-\frac{\hbar^2}{2m_1}\nabla_1^2-\frac{\hbar^2}{2m_2}\nabla_2^2+V(\vec{r}_1,\vec{r}_2,t)$}
+	
+	probability to find particle 1 in volume $d^3\vec{r_1}$ \textbf{and} particle two in volume $d^3\vec{r_2}$:  \fbox{$|\Psi(\vec{r}_1,\vec{r}_2,t)|^2d^3\vec{r}_1d^3\vec{r}_2$}
+	
+	
+	
+	\subsubsection{Seperation}
+	
+	\begin{tabular}{ll|l}	
+	Center of mass motion: &$\vec{R}=\frac{m_1\vec{r}_1+m_2\vec{r}_2}{m_1+m_2}$&$\vec{r}_1=\vec{R}+\frac{m_r}{m_1}\vec{r}$\\
+	reduced mass: &$m_r=\frac{m_1m_2}{m_1+m_2}$&$\vec{r}_2=\vec{R}-\frac{m_r}{m_2}\vec{r}$\\
+	Relative motion: &$\vec{r}=\vec{r}_1-\vec{r}_2$&\small$\nabla_1=\nabla_r+\frac{m_r}{m_2}\nabla_R$\normalsize
+	\end{tabular}
+	
+	\note{
+	$\nabla_2=-\nabla_r+\frac{m_r}{m_1}\nabla_R\qquad[-\frac{\hbar^2}{2(m_1+m_2)}\nabla_R^2-\frac{\hbar^2}{2m_r}\nabla_r^2+V(\vec{r})]\psi=E\psi$}
+	
+	\important{$\psi(\vec{r}_1,\vec{r}_2)\Rightarrow\psi=\psi_R(\vec{R})\cdot\psi(\vec{r})$}
+	
+	\note{
+	$\psi_R$ satisfies one particle SE with $m=m_1+m_2,\ V=0,\ E=E_R$
+	
+	$\psi_r$ satisfies one particle SE with $m=m_r,\ V=V(\vec{r}),\ E=E_r$
+
+	$E_{tot}=E_R+E_r$	
+	}
+	
+	\subsection{Distinguishable particles}
+	
+	\important{$\psi(\vec{r}_1,\vec{r}_2)=\psi_a(\vec{r})\psi_b(\vec{r}_2)$ or $\psi(\vec{r}_1,\vec{r}_2)=\psi_b(\vec{r}_1)\psi_a(\vec{r}_2)$}
+	
+	\subsection{Indistinguishable particles}
+	
+	\importable{$\psi_+(\vec{r}_1,\vec{r}_2)$&$=A\left[\psi_a(\vec{r}_1)\psi_b(\vec{r}_2)+\psi_b(\vec{r}_1)\psi_a(\vec{r}_2)\right]$\\
+	$\psi_-(\vec{r}_1,\vec{r}_2)$&$=A\left[\psi_a(\vec{r}_1)\psi_b(\vec{r}_2)-\psi_b(\vec{r_1})\psi_a(\vec{r}_2)\right]$}
+	
+	\subsubsection{Exchange force}
+	
+	\important{$\hat{P}f(\vec{r}_1,\vec{r}_2)\longrightarrow f(\vec{r}_2,\vec{r}_1)\qquad [\hat{P},\hat{H}]=0\qquad EV_P=\pm1$}
+	
+	$\expval{(x_1-x_2)^2}$ for $\psi_+$ and $\psi_-$:
+	
+	\small
+	\begin{tabular}{ll}
+	$\psi_+$&lower energy, forms bond, closer together\\
+	$\psi_-$&higher energy, forms antibond, farther apart
+	\end{tabular}
+	\normalsize
+	
+	\subsubsection{Axiom for Bosons and Fermions}
+	\small
+	\begin{tabular}{p{0.45\linewidth}| p{0.45\linewidth}}
+	\textbf{Bosons} & \textbf{Fermions}\\
+	photons, gravitons & electrons, protons, neutrons\\
+	integer Spin & $\frac{1}{2}$-integer Spin\\
+	symmetric  & antisymmetric
+	\end{tabular}
+		
+	\finn	
+	
+	\scriptsize
+	Electrons are fermions \dahe $\psi$ should be antisymmetric \textbf{but} $\psi_-$ is unbonding! \dahe consider \textbf{spin}
+	\normalsize
+
+	\finn
+	
+	Possible spins for 2 electrons:	
+
+	\small
+	\begin{tabular}{lll}
+	both spin up&$\uparrow\uparrow$&\rdelim\}{3}{3mm}[symmetric triplet]\\
+	both spin down&$\downarrow\downarrow$\\
+	one up one down&$\frac{1}{\sqrt{2}}(\uparrow\downarrow+\downarrow\uparrow)$\\
+	or	&$\frac{1}{\sqrt{2}}(\uparrow\downarrow-\downarrow\uparrow)$&\rdelim\}{1}{3mm}[antisymmetric singlet]
+	\end{tabular}
+	\normalsize
+	
+	\subsubsection{Overall Wavefunction}
+	
+	$\underbrace{\psi(\vec{r})}_{\text{spatial}}\cdot\underbrace{\chi(s)}_{\text{spin}}=\psi_+\cdot(singlet)$ yields a bonding electron pair!
+	
+	\section{Atoms}
+	
+	\important{$\hat{H}=\sum\limits_{j=1}^{Z}\left[\left\{-\frac{\hbar^2}{2m}\nabla^2_j-\frac{1}{4\pi\epsilon_0}\frac{Ze^2}{r_j}\right\}+\frac{1}{2}\left(\frac{1}{4\pi\epsilon_0}\sum\limits_{k\neq j}^Z{\frac{e^2}{|\vec{r}_j-\vec{r}_k|}}\right)\right]$}
+	
+	First part in $\{\}$: Kinetic energy + interaction of nucleus with $j_{TH} $ electron.
+	
+	Second part in $\left(\right)$: Repulsive interaction between electron j and k. Factor $\frac{1}{2}$ avoids double counting.
+	
+	\subsection{Placement of electrons}
+	
+	Each electron placed in a single-particle hydrogenic state: $\psi_{n,l,m_l,m_s}$.
+	
+	\finn	
+	
+	\footnotesize
+	\begin{tabular}{ll}
+	$n=1,\ 2,\ 3,\ \dots$&shell (K,L,M,N)\\
+	$l=0,\ 1,\ 2,\ \dots ,\ n-1$&subshell (or shape) s,p,d,f,g,$\ldots$\\
+	$m_l=-l, -l+1, .. ,-1,0,1,..,l-1,l$ & orientation of orbital $p_x,p_y,p_z$\\
+	$m_s=\pm\frac{1}{2}$&spin of electron
+	\end{tabular}
+	\normalsize
+	
+	\important{Hydrogenic state of the same n are degenerate.}
+	
+	\important{In reality screening prevents this.}
+	
+	\note{$[Cr]=[Ar]4s3d^5\qquad[Cu]=[Ar]4s3d^{10}$}
+	
+	\subsection{Angular momentum in multiparticle systems}
+	
+	\small
+	\begin{tabular}{l@{ $\equiv$ }l}
+	$L$& total orbital angular momentum\\
+	$S$& total spin angular momentum\\
+	$J = L + S$& total angular momentum\\
+	$M_L$& $\sum_i{{m_l}_i}$\\
+	$M_S$& $\sum_i{{m_s}_i}$\\
+	$M_J=M_L+M_S$&related to projection along z-axis 
+	\end{tabular}
+	\normalsize		
+	
+	Filled subshell: $M_s=0\Rightarrow S=0\quad M_L=0\Rightarrow L=0$	
+	
+	\important{Filled subshells never contribute to L,S,J}
+	
+	\subsubsection{Addition rule}
+	
+	given $j_1$ and $j_2$, $J=j_1+j_2$
+	
+	\important{$J=(j_1+j_2),(j_1+j_2-1),(j_1+j_2-2),\ldots,|j_1-j_2|$}
+	
+	\subsubsection{Labelling}
+	
+	$^{2S+1}L_J$
+	
+	for L use: S,P,D,F,G,$\ldots$
+	
+	if $S=0\Rightarrow$ called single state
+	
+	if $S=1\Rightarrow$ called triplet state
+	
+	\subsection{Hund's Rules}
+	\small
+	\begin{itemize}
+	\compaq
+	\item
+	The state with the largest S is the most stable.
+	\item
+	For states with the same S the largest L is most stable.
+	\item
+	For states with the same S and L:
+	\begin{itemize}
+	\compaq
+	\item
+	smallest J is most stable for subshells less than half full.
+	\item
+	largest J is most stable for subshells more than half full.
+	\end{itemize}
+	\end{itemize}
+	\normalsize
+	
+	\section{Solids}
+	
+	\dahe 3D particle-in-a-box 
+	
+	\dahe $E_{n_x,n_y,n_z}=\frac{\hbar^2\pi^2}{2m}\left(\frac{n_x^2}{l_x^2}+\frac{n_y^2}{l_y^2}+\frac{n_z^2}{l_z^2}\right)$
+	
+	$\Delta E = \SI{1e6}{\electronvolt}\ll k_BT$ at room temperature
+	
+	$\Delta E$ very small \dahe continuous electron-\glqq bands\grqq.
+	
+	\subsection{Fermi level}
+	
+	Fill up the band with electrons \dahe highest occupied level?
+	
+	K-space, each point represents a combination of $n_i$.
+	
+	\begin{tabular}{l|l|l}
+	1D&2D&3D\\
+	$E_{n_x}=\frac{\hbar^2k_x^2}{2m}$&$E_{n_{x,y}}=\frac{\hbar^2(k_x^2+k_y^2)}{2m}$&$E_{n_{x,y,z}}=\frac{\hbar^2(k_x^2+k_y^2+k_z^2)}{2m}$\\
+	$k_F=k_x$&$k_F=\sqrt{k_x^2+k_y^2}$&$k_F=\sqrt{k_x^2+k_y^2+k_z^2}$\\
+	$V_1=\frac{\pi}{L_x}$&$V_2=\frac{\pi^2}{L_xL_y}$&$V_3=\frac{\pi^3}{L_xL_yL_z}$\\
+	$V_{tot,1}=k_F$&$V_{tot,2}=\frac{1}{4}k_F^2\pi$&$V_{tot,3}=\frac{1}{8}\cdot\frac{4}{3}k_F^3\pi$\\
+	\end{tabular}
+		
+	$k=\frac{N\pi}{L}$\hfill$ n=\frac{M}{L^{(D)}}$\hfill$N=\frac{M}{2}$
+	
+	$V_{tot,D}=V_DN=V_D\frac{M}{2}$\hfill$L_i=L$\hfill$\rightarrow E_F(k_F)=?$
+	
+	$E_F=\frac{\hbar^2 k_F^2}{2m}$
+	
+	$E_{F,1}=\frac{h^2 n^2}{32m_e}\qquad E_{F,2}=\frac{h^2n}{4\pi m_e} \qquad E_{F,3}=\frac{h^2}{8m_e}\cdot\frac{3n}{\pi}^{2/3}$
+	
+	$N_q$ - number of occupied 1-electron levels
+	
+	\important{$N_q=\frac{V}{3\pi^2}\left(\frac{2mE}{\hbar^2}\right)^{2/3}\qquad D(E)=\frac{\partial N_q}{\partial E}=\frac{V}{2\pi^2}\left(\frac{2m}{\hbar^2}\right)^{3/2}E^{1/2}$}
+	
+	\subsection{Insulators and semiconductors}
+	
+	Periodic potential $V(x)=V(x+a)$
+	
+	$|\psi(x+a)|^2=|\psi(x)|^2$ \dahe $|\psi(x)|^2$ is periodic.
+	
+	\finn
+	
+	Displacement operator $\hat{D}$, $\hat{D}f(x)=f(x+a)$
+	
+	$\Rightarrow [\hat{D},\hat{H}]=0$ \dahe $\psi(x)$ are eigenfunctions of $\hat{D}$
+	
+	\important{Bloch's theorem: $\psi(x+a)=e^{iKa}\psi(x)$}
+	
+	Boundary condition $\psi(x)=\psi(Na+x)\overset{\text{Bloch}}{=}e^{iKNa}\psi(x)$
+	
+	\dahe $e^{iKNa}=1\Rightarrow K=\frac{2\pi s}{Na}$
+	
+	\subsection{Dirac's comb}
+	
+	$V(x)=\alpha\sum\limits_{j=0}{N-1}{\delta(x-ja)}$
+	
+	for $0<x<a$ : $\psi(x)=A\sin(kx)+B\cos(kx)$
+	
+	Boundary conditions: Bloch, continuity of $\psi(x)$ and $\frac{\partial \psi(x)}{\partial x}$
+	
+	\important{$\cos(Ka)=\cos(ka)+\frac{m\alpha}{\hbar^2 k}\sin(ka)$}
+	
+	\dahe LHS $\in[-1,1]$ but RHS is not!
+	
+	\important{Only certain ranges of E are allowed!}
+	
+	\subsection{Impurities}
+	
+	$n_{electrons}=N_D \exp(\frac{-E_D}{k_BT})$
+	
+	\section{Perturbation Theory}
+	
+	\subsection{non-degenerate}
+	
+	Perturbed potential \dahe new Hamiltonian: $H=H^0+\lambda H'$
+	
+	$\psi_n=\phi_n^0+\lambda\psi_n^1+\cdots$\hfill$E_n=E_n^0+\lambda E_n^1+\cdots$
+	
+	$1_{st}$ order: $H^0\psi_n^1+H'\psi_n^0=E_n^0\psi_n^1+E_n^1\psi_n^0$
+	
+	\dahe multiply by $(\psi_n^0)^\ast$ and integrating \dahe Inner product.
+	
+	\begin{center}\fbox{$E_n^1=\inp{\psi_n^0|H'}{\psi_n^0}$}$\qquad$\fbox{$E_n^2=\sum\limits_{m\neq n}{\frac{|\inp{\psi_m^0|H'}{\psi_n^0}|^2}{E_n^0-E_m^0}}$}\end{center}
+	
+	\important{$\psi_n^1=\sum\limits_{m\neq n}{\frac{\inp{\psi_m^0|H'}{\psi_n^0}}{(E_n^0-E_m^0)}\psi_m^0}$}
+	
+	\emph{The denominator is safe as long as the unperturbed Energy spectrum is nondegenerate.}
+	
+	\subsection{degenerate}
+	
+	$H^0\psi_a^0=E^0\psi_a^0\qquad H^0\psi_b^0=E^0\psi_b^0\qquad\rightarrow \psi_0=\alpha\psi_a^0+\beta\psi_b^0$
+	
+	When increasing the perturbation from 0 to 1, $E^0$ is split into two.
+	
+	As before, $1_{st}$ order: $H^0\psi_n^1+H'\psi_n^0=E_n^0\psi_n^1+E_n^1\psi_n^0$
+	
+	Taking the inner product with $\psi_a^0$, $\psi_b^0$ respectively:
+	
+	$\alpha W_{aa}+\beta W_{ab}=\alpha E^1\qquad \alpha W_{ba}+\beta W_{bb}=\beta E^1$
+	
+	\important{$W_{ij}\equiv \inp{\psi_i^0|H'}{\psi_j^0}$}
+	
+	\important{$E_\pm^1=\frac{1}{2}\left[W_{aa}+W_{bb}\pm\sqrt{(W_{aa}-W_{bb})^2+4|W_{ab}|^2}\right]$}
+	
+	This is equivalent to finding the eigenvalues of the W-matrix
+	
+	\important{$\begin{pmatrix}W_{aa}&W_{ab}\\W_{ba}&W_{bb}\end{pmatrix}\begin{pmatrix}\alpha\\ \beta\end{pmatrix}=E^1\begin{pmatrix}\alpha \\ \beta\end{pmatrix}$}
+	
+	
+	If the W-matrix is diagonal, i.e. $\psi_a^0$ and $\psi_b^0$ are already the proper eigenstates:
+	
+	$\begin{matrix}E_+^1=W_{aa}=\inp{\psi_a^0}{H'\psi_a^0}\\E_-^1=W_{bb}=\inp{\psi_b^0}{H'\psi_b^0}\end{matrix}$
+	
+	\section{Variational Principle}
+	
+	\important{$E_{gs}\leq\inp{\psi_{trial}}{\hat{H}\psi_{trial}}\equiv \expval{\hat{H}}$}
+	
+	\subsection{Proof}
+	
+	$\psi_{trial}=\sum\limits_n{c_n\psi_n}$ with $\hat{H}\psi_n=E_n\psi_n$
+	
+	$\expval{\hat{H}}=\inp{\sum\limits_m{c_m\psi_m}}{\hat{H}\sum\limits_n{c_n\psi_n}}=\sum\limits_m\sum\limits_n{c_m^\ast c_n\inp{\psi_m}{\psi_n}}=\sum\limits_n{E_n|c_n|^2}$
+	
+	$\sum\limits_n|c_n|^2 \equiv 1 \qquad E_n\geq E_{gs}\Rightarrow \expval{\hat{H}}\geq E_{gs}$
+	
+	\subsection{Application}
+	
+	$\psi_{trial}=\left(\frac{\alpha}{\pi}\right)^{1/4}e^{-\alpha x^2/2}$
+	
+	$\Rightarrow E_{gs}\leq \inp{\psi_{trial}}{\hat{H}\psi_{trial}}=$
+	
+	$=\left(\frac{\alpha}{\pi}\right)^{1/2}\intinf{e^{-\alpha x^2/2}\cdot\left[-\frac{\hbar^2}{2m}\cdot\frac{\partial^2}{\partial x^2}+cx^4\right]\cdot e^{-\alpha x^2/2}}$
+	
+	$E_{gs}\leq \frac{\hbar^2\alpha}{4m}+\frac{3c}{4\alpha^2}\Rightarrow \frac{\partial}{\partial \alpha}E(\alpha)=0\Rightarrow \alpha_{min}=\left(\frac{6mc}{\hbar^2}\right)^{1/3}$
+	
+	\important{$E_{ges}\leq E(\alpha_{min})$}
+	
+\end{multicols*}
+\end{document}
+
+
+
+
+
+
+
